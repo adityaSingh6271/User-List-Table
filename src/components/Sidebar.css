@@ -1,0 +1,111 @@
+.leftSide {
+  height: 100vh; /* Ensures the sidebar takes the full screen height */
+  width: 22%;
+  background-color: #194895;
+  border-top-right-radius: 40px;
+  color: white;
+  padding: 1rem;
+  position: fixed;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+  .leftSide {
+    width: 30%;
+  }
+}
+
+@media (max-width: 992px) {
+  .leftSide {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .leftSide {
+    width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .leftSide {
+    width: 100%;
+    height: auto;
+    border-top-right-radius: 0;
+    padding: 0.5rem;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  flex: 1;
+}
+
+.logoContainer li {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  color: white;
+  margin-right: 1rem;
+}
+
+.white-filter {
+  filter: brightness(0) invert(1);
+}
+
+#hamburgerIcon {
+  font-size: 2rem;
+  cursor: pointer;
+  text-shadow: 1px 1px 1px white;
+}
+
+.leftCategory {
+  margin-top: 30%;
+}
+
+.categoryLogos li {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 10px; /* Add padding for better hover effect */
+  border-radius: 10px; /* Add border-radius for rounded corners */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.categoryLogos li:hover {
+  background-color: white;
+  color: #152b58;
+}
+
+.categoryLogos li img {
+  margin-right: 40px;
+}
+
+/* Media queries for category logos */
+@media (max-width: 768px) {
+  .categoryLogos li {
+    margin-top: 30px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .categoryLogos li {
+    margin-top: 20px;
+    font-size: 0.8rem;
+  }
+}
