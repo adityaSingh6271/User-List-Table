@@ -15,6 +15,8 @@ const UserList = () => {
     statuses: [],
   });
   const [showFilter, setShowFilter] = useState(false);
+  const [showDepartmentFilter, setShowDepartmentFilter] = useState(false); // Added
+  const [showStatusFilter, setShowStatusFilter] = useState(false); // Added
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -111,7 +113,7 @@ const UserList = () => {
                   value={searchQuery}
                 />
                 <img
-                  id="arrow"
+                  id="search-arrow"
                   src={rightarrow}
                   alt="Right Arrow"
                   className="searchArrow"
@@ -135,43 +137,9 @@ const UserList = () => {
             <li id="Userli">
               <img src={UserLogo} alt="User Logo" className="navIcon" />
             </li>
-            <i id="arrow" className="bi bi-chevron-down"></i>
+            <i id="user-arrow" className="bi bi-chevron-down"></i>
           </ul>
         </nav>
-
-        {/* Filter UI - Toggles when filter icon is clicked */}
-        {showFilter && (
-          <div className="filterBox">
-            <h3>Data Filters</h3>
-            <hr />
-            <div className="filterSection">
-              <h4>Department</h4>
-              {["Finance", "Engineer", "Art"].map((dept) => (
-                <label key={dept}>
-                  <input
-                    type="checkbox"
-                    checked={filterCriteria.departments.includes(dept)}
-                    onChange={() => handleFilterChange("departments", dept)}
-                  />
-                  {dept}
-                </label>
-              ))}
-            </div>
-            <div className="filterSection">
-              <h4>Status</h4>
-              {["Active", "Inactive", "Blocked", "Suspended"].map((status) => (
-                <label key={status}>
-                  <input
-                    type="checkbox"
-                    checked={filterCriteria.statuses.includes(status)}
-                    onChange={() => handleFilterChange("statuses", status)}
-                  />
-                  {status}
-                </label>
-              ))}
-            </div>
-          </div>
-        )}
 
         <div className="UserTable">
           <ul className="TopHeader">
@@ -185,20 +153,24 @@ const UserList = () => {
           </ul>
 
           <div className="DataContainer">
-            {currentItems.map((user) => (
-              <ul key={user["Teacher Id"]} className="DataRow">
-                <li>{user["Record ID"]}</li>
-                <li>{user["Teacher Name"]}</li>
-                <li>{user["Teacher Id"]}</li>
-                <li>{user["Department"]}</li>
-                <li>{user["Student"]}</li>
-
-                {/* Updated Status with Dot */}
-                <li>{renderStatusWithDot(user["Status"])}</li>
-
-                <li className="ViewMore">View More &gt;</li>
-              </ul>
-            ))}
+            {currentItems.length > 0 ? (
+              currentItems.map((user) => (
+                <ul key={user["Teacher Id"]} className="DataRow">
+                  <li>{user["Record ID"]}</li>
+                  <li>{user["Teacher Name"]}</li>
+                  <li>{user["Teacher Id"]}</li>
+                  <li>{user["Department"]}</li>
+                  <li>{user["Student"]}</li>
+                  <li>
+                    {renderStatusWithDot(user["Status"])}
+                    <i class="bi bi-chevron-down"></i>
+                  </li>
+                  <li className="ViewMore">View More &gt;</li>
+                </ul>
+              ))
+            ) : (
+              <p>No matching users found.</p> // Added message when no data
+            )}
           </div>
 
           <div className="btnContainer">
@@ -242,6 +214,62 @@ const UserList = () => {
             </button>
           </div>
         </div>
+
+        {/* Filter UI - Toggles when filter icon is clicked */}
+        {showFilter && (
+          <div className="filterBox">
+            <h3>Data Filters</h3>
+            <hr />
+            <div
+              className="filterSection"
+              onClick={() => setShowDepartmentFilter(!showDepartmentFilter)}
+            >
+              <h4>
+                Department<i className="bi bi-chevron-down"></i>
+              </h4>
+              {showDepartmentFilter && (
+                <div>
+                  {["Finance", "Engineer", "Art"].map((dept) => (
+                    <label key={dept}>
+                      <input
+                        type="checkbox"
+                        checked={filterCriteria.departments.includes(dept)}
+                        onChange={() => handleFilterChange("departments", dept)}
+                      />
+                      {dept}
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div
+              className="filterSection"
+              onClick={() => setShowStatusFilter(!showStatusFilter)}
+            >
+              <h4>
+                Status<i className="bi bi-chevron-down"></i>
+              </h4>
+              {showStatusFilter && (
+                <div>
+                  {["Active", "Inactive", "Blocked", "Suspended"].map(
+                    (status) => (
+                      <label key={status}>
+                        <input
+                          type="checkbox"
+                          checked={filterCriteria.statuses.includes(status)}
+                          onChange={() =>
+                            handleFilterChange("statuses", status)
+                          }
+                        />
+                        {status}
+                      </label>
+                    )
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </header>
     </div>
   );

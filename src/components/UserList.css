@@ -78,8 +78,9 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 250px;
   position: absolute;
-  top: 60px; /* Position relative to filter icon */
+  top: 60px;
   right: 50px;
+  z-index: 1000;
 }
 
 .filterBox h3 {
@@ -98,28 +99,31 @@
 }
 
 .filterSection h4 {
-  margin: 0 0 10px 0; /* Add margin for section header */
-  font-weight: bold; /* Make the section headers bold */
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.filterSection div {
+  margin-top: 10px;
 }
 
 .filterSection label {
-  display: block; /* Stack the checkboxes vertically */
+  display: block;
   margin-bottom: 5px;
-  cursor: pointer; /* Change cursor to pointer for better UX */
+  cursor: pointer;
 }
 
 .filterSection input[type="checkbox"] {
-  margin-right: 10px; /* Space between checkbox and label text */
+  margin-right: 10px;
 }
 
-/* Optional: Style the checkboxes */
 .filterSection input[type="checkbox"]:focus {
-  outline: none; /* Remove default focus outline */
+  outline: none;
 }
 
-/* Optional: Add hover effect for the checkboxes */
 .filterSection input[type="checkbox"]:hover {
-  transform: scale(1.1); /* Slightly enlarge checkbox on hover */
+  transform: scale(1.1);
 }
 
 .UserTable {
@@ -169,6 +173,10 @@ header {
   margin-left: 40px;
 }
 
+.DataContainer .ViewMore {
+  color: #024bd1;
+}
+
 .DataContainer ul {
   display: flex;
   justify-content: space-between;
@@ -183,6 +191,7 @@ header {
 .DataContainer ul li {
   flex: 1;
   text-align: center;
+  margin-right: -10px;
 }
 
 .DataContainer ul:hover {
