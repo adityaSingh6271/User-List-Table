@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
 import Group937 from "../Images/Group937.png";
 import Group598 from "../Images/Group598.png";
@@ -6,6 +6,13 @@ import Group939 from "../Images/Group939.png";
 import Group940 from "../Images/Group940.png";
 
 const Sidebar = () => {
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  // Function to handle clicking on a category
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+  };
+
   return (
     <div className="leftSide">
       <ul className="logoContainer">
@@ -26,19 +33,31 @@ const Sidebar = () => {
 
       <div className="leftCategory">
         <ul className="categoryLogos">
-          <li>
+          <li
+            onClick={() => handleCategoryClick("teachers")}
+            className={activeCategory === "teachers" ? "active" : ""}
+          >
             <img src={Group937} alt="Group 937" />
             Teachers
           </li>
-          <li>
+          <li
+            onClick={() => handleCategoryClick("department")}
+            className={activeCategory === "department" ? "active" : ""}
+          >
             <img src={Group939} alt="Group 938" />
             Department
           </li>
-          <li>
+          <li
+            onClick={() => handleCategoryClick("library")}
+            className={activeCategory === "library" ? "active" : ""}
+          >
             <img src={Group940} alt="Group 939" />
             Library
           </li>
-          <li>
+          <li
+            onClick={() => handleCategoryClick("addTeacher")}
+            className={activeCategory === "addTeacher" ? "active" : ""}
+          >
             <img src={Group598} alt="Group 940" />
             Add Teacher
           </li>

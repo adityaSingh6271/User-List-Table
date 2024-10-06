@@ -1,41 +1,16 @@
+/* Main Sidebar Style */
 .leftSide {
-  height: 100vh; /* Ensures the sidebar takes the full screen height */
-  width: 22%;
+  height: 100vh; /* Full screen height */
+  width: 22%; /* Default width */
   background-color: #194895;
   border-top-right-radius: 40px;
   color: white;
   padding: 1rem;
   position: fixed;
+  overflow-y: auto; /* Allows scrolling if content exceeds height */
 }
 
-/* Media queries for responsiveness */
-@media (max-width: 1200px) {
-  .leftSide {
-    width: 30%;
-  }
-}
-
-@media (max-width: 992px) {
-  .leftSide {
-    width: 40%;
-  }
-}
-
-@media (max-width: 768px) {
-  .leftSide {
-    width: 50%;
-  }
-}
-
-@media (max-width: 576px) {
-  .leftSide {
-    width: 100%;
-    height: auto;
-    border-top-right-radius: 0;
-    padding: 0.5rem;
-  }
-}
-
+/* Logo Container */
 .logoContainer {
   display: flex;
   justify-content: space-between;
@@ -60,7 +35,7 @@ li {
 }
 
 .white-filter {
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1); /* Inverts image colors for better contrast */
 }
 
 #hamburgerIcon {
@@ -69,6 +44,7 @@ li {
   text-shadow: 1px 1px 1px white;
 }
 
+/* Category Logos */
 .leftCategory {
   margin-top: 30%;
 }
@@ -78,15 +54,24 @@ li {
   align-items: center;
   margin-top: 50px;
   margin-left: 20px;
+  width: 300px; /* Fixed width, adjust in media queries */
   font-weight: bold;
   font-size: 1.2rem;
   cursor: pointer;
-  padding: 10px; /* Add padding for better hover effect */
-  border-radius: 10px; /* Add border-radius for rounded corners */
-  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.categoryLogos li:hover {
+.categoryLogos li {
+  position: relative;
+  color: white;
+  padding: 10px 40px;
+  border-radius: 75px 0 0 75px;
+}
+
+.categoryLogos li:hover,
+.categoryLogos li.active {
   background-color: white;
   color: #152b58;
 }
@@ -95,17 +80,80 @@ li {
   margin-right: 40px;
 }
 
-/* Media queries for category logos */
-@media (max-width: 768px) {
+/* ========== Media Queries for Responsive Design ========== */
+
+/* Medium Devices: Tablets and smaller laptops (1200px and down) */
+@media (max-width: 1200px) {
+  .leftSide {
+    width: 30%;
+  }
+
   .categoryLogos li {
-    margin-top: 30px;
-    font-size: 1rem;
+    width: 250px; /* Reduce width */
+    font-size: 1.1rem;
   }
 }
 
-@media (max-width: 576px) {
+/* Small Devices: Laptops, tablets (992px and down) */
+@media (max-width: 992px) {
+  .leftSide {
+    width: 40%;
+  }
+
   .categoryLogos li {
-    margin-top: 20px;
+    width: 220px;
+    font-size: 1rem; /* Adjust font size */
+  }
+}
+
+/* Tablets and Medium-Sized Mobile Devices (768px and down) */
+@media (max-width: 768px) {
+  .leftSide {
+    width: 50%;
+    padding: 0.8rem; /* Adjust padding for smaller screens */
+  }
+
+  .categoryLogos li {
+    width: 200px;
+    font-size: 0.9rem;
+    padding: 10px 30px;
+    margin-top: 30px;
+  }
+
+  #hamburgerIcon {
+    font-size: 1.8rem;
+  }
+}
+
+/* Small Mobile Devices (576px and down) */
+@media (max-width: 576px) {
+  .leftSide {
+    width: 100%;
+    height: auto; /* Allow the sidebar to take full width and auto height */
+    border-top-right-radius: 0; /* Remove top-right border-radius for better fit */
+    padding: 0.5rem;
+  }
+
+  .categoryLogos li {
+    width: 100%; /* Full width for list items */
     font-size: 0.8rem;
+    padding: 10px 20px; /* Adjust padding */
+    margin-top: 20px;
+  }
+
+  .leftCategory {
+    margin-top: 20px; /* Reduce the top margin */
+  }
+
+  #hamburgerIcon {
+    font-size: 1.5rem; /* Reduce size */
+  }
+
+  .logoContainer li {
+    font-size: 1.5rem; /* Adjust logo font size */
+  }
+
+  .categoryLogos li img {
+    margin-right: 20px; /* Reduce space for smaller screens */
   }
 }

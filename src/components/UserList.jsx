@@ -163,7 +163,7 @@ const UserList = () => {
                   <li>{user["Student"]}</li>
                   <li>
                     {renderStatusWithDot(user["Status"])}
-                    <i class="bi bi-chevron-down"></i>
+                    <i className="bi bi-chevron-down"></i>
                   </li>
                   <li className="ViewMore">View More &gt;</li>
                 </ul>
